@@ -24,7 +24,7 @@ pub struct StaticMemory {
 }
 
 impl StaticMemory {
-    pub(in crate::memory) fn new(
+    pub(super) fn new(
         desc: MemoryDescriptor,
         local: &mut vm::LocalMemory,
     ) -> Result<Box<Self>, CreationError> {

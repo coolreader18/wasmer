@@ -49,13 +49,13 @@ pub struct NonAtomically;
 impl Atomicity for NonAtomically {}
 
 /// A view into a memory.
-pub struct MemoryView<'a, T: 'a, A = NonAtomically> {
+pub struct MemoryView<'a, T: 'a, A: Atomicity = NonAtomically> {
     ptr: *mut T,
     length: usize,
     _phantom: PhantomData<(&'a [Cell<T>], A)>,
 }
 
-impl<'a, T> MemoryView<'a, T, NonAtomically>
+impl<'a, T> MemoryView<'a, T>
 where
     T: ValueType,
 {
